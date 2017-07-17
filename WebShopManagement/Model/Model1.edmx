@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WebshopManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_Cart">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_Id" Type="nvarchar" MaxLength="50" />
+          <Property Name="Session_Id" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_CustomerInfo">
+          <Key>
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="tbl_Order">
+          <Key>
+            <PropertyRef Name="Order_Id" />
+          </Key>
+          <Property Name="Order_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Session_Id" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customer_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customer_Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customer_Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customer_Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Order_Price" Type="nvarchar" MaxLength="50" />
+          <Property Name="Edit_Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_ProductBrand">
+          <Key>
+            <PropertyRef Name="Brand_Id" />
+          </Key>
+          <Property Name="Brand_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Brand_Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_ProductCategory">
+          <Key>
+            <PropertyRef Name="Category_Id" />
+          </Key>
+          <Property Name="Category_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Edit_Date" Type="datetime" />
+          <Property Name="Edit_User" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_ProductInfo">
+          <Key>
+            <PropertyRef Name="Product_Id" />
+          </Key>
+          <Property Name="Sl_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Product_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Product_Description" Type="nvarchar(max)" />
+          <Property Name="Product_Image" Type="nvarchar" MaxLength="50" />
+          <Property Name="Category_Id" Type="int" />
+          <Property Name="Subcategory_Id" Type="int" />
+          <Property Name="Brand_Id" Type="int" />
+          <Property Name="Purchase_Rate" Type="money" />
+          <Property Name="Sell_Rate" Type="money" />
+          <Property Name="ReorderLebel" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Edit_Date" Type="datetime" />
+          <Property Name="Edit_User" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_ProductStock">
+          <Key>
+            <PropertyRef Name="Stock_Id" />
+          </Key>
+          <Property Name="Stock_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_Id" Type="int" />
+          <Property Name="Stock_Quantity" Type="int" />
+          <Property Name="Edit_Date" Type="datetime" />
+          <Property Name="Edit_User" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_ProductSubcategory">
+          <Key>
+            <PropertyRef Name="Subcategory_Id" />
+          </Key>
+          <Property Name="Subcategory_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category_Id" Type="int" />
+          <Property Name="Subcategory_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Edit_Date" Type="datetime" />
+          <Property Name="Edit_User" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Purchase">
+          <Key>
+            <PropertyRef Name="Purchase_Id" />
+          </Key>
+          <Property Name="Purchase_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_Id" Type="int" />
+          <Property Name="Purchase_Qantity" Type="int" />
+          <Property Name="Purchase_Date" Type="datetime" />
+          <Property Name="Edit_Date" Type="datetime" />
+          <Property Name="Edit_User" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Sale">
+          <Key>
+            <PropertyRef Name="Sale_Id" />
+          </Key>
+          <Property Name="Sale_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_Id" Type="int" />
+          <Property Name="Order_Id" Type="int" />
+          <Property Name="Sale_Quantity" Type="int" />
+          <Property Name="Edit_Date" Type="datetime" />
+          <Property Name="Edit_User" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_UnsignCustomer">
+          <Key>
+            <PropertyRef Name="Customer_Id" />
+          </Key>
+          <Property Name="Customer_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customer_Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customer_Phone" Type="int" />
+          <Property Name="Customer_Address" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="WebshopManagementModelStoreContainer">
+          <EntitySet Name="tbl_Cart" EntityType="Self.tbl_Cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CustomerInfo" EntityType="Self.tbl_CustomerInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Order" EntityType="Self.tbl_Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ProductBrand" EntityType="Self.tbl_ProductBrand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ProductCategory" EntityType="Self.tbl_ProductCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ProductInfo" EntityType="Self.tbl_ProductInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ProductStock" EntityType="Self.tbl_ProductStock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ProductSubcategory" EntityType="Self.tbl_ProductSubcategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Purchase" EntityType="Self.tbl_Purchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Sale" EntityType="Self.tbl_Sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_UnsignCustomer" EntityType="Self.tbl_UnsignCustomer" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebshopManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_ProductCategory">
+          <Key>
+            <PropertyRef Name="Category_Id" />
+          </Key>
+          <Property Name="Category_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Edit_Date" Type="DateTime" Precision="3" />
+          <Property Name="Edit_User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_ProductStock">
+          <Key>
+            <PropertyRef Name="Stock_Id" />
+          </Key>
+          <Property Name="Stock_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_Id" Type="Int32" />
+          <Property Name="Stock_Quantity" Type="Int32" />
+          <Property Name="Edit_Date" Type="DateTime" Precision="3" />
+          <Property Name="Edit_User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Purchase">
+          <Key>
+            <PropertyRef Name="Purchase_Id" />
+          </Key>
+          <Property Name="Purchase_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_Id" Type="Int32" />
+          <Property Name="Purchase_Qantity" Type="Int32" />
+          <Property Name="Purchase_Date" Type="DateTime" Precision="3" />
+          <Property Name="Edit_Date" Type="DateTime" Precision="3" />
+          <Property Name="Edit_User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Sale">
+          <Key>
+            <PropertyRef Name="Sale_Id" />
+          </Key>
+          <Property Name="Sale_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_Id" Type="Int32" />
+          <Property Name="Order_Id" Type="Int32" />
+          <Property Name="Sale_Quantity" Type="Int32" />
+          <Property Name="Edit_Date" Type="DateTime" Precision="3" />
+          <Property Name="Edit_User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="WebshopManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_ProductCategory" EntityType="Self.tbl_ProductCategory" />
+          <EntitySet Name="tbl_ProductStock" EntityType="Self.tbl_ProductStock" />
+          <EntitySet Name="tbl_Purchase" EntityType="Self.tbl_Purchase" />
+          <EntitySet Name="tbl_Sale" EntityType="Self.tbl_Sale" />
+          <EntitySet Name="tbl_CustomerInfo" EntityType="WebshopManagementModel.tbl_CustomerInfo" />
+          <EntitySet Name="tbl_ProductSubcategory" EntityType="WebshopManagementModel.tbl_ProductSubcategory" />
+          <EntitySet Name="tbl_UnsignCustomer" EntityType="WebshopManagementModel.tbl_UnsignCustomer" />
+          <EntitySet Name="tbl_ProductBrand" EntityType="WebshopManagementModel.tbl_ProductBrand" />
+          <EntitySet Name="tbl_Cart" EntityType="WebshopManagementModel.tbl_Cart" />
+          <EntitySet Name="tbl_Order" EntityType="WebshopManagementModel.tbl_Order" />
+          <EntitySet Name="tbl_ProductInfo" EntityType="WebshopManagementModel.tbl_ProductInfo" />
+        </EntityContainer>
+        <EntityType Name="tbl_CustomerInfo">
+          <Key>
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_ProductSubcategory">
+          <Key>
+            <PropertyRef Name="Subcategory_Id" />
+          </Key>
+          <Property Name="Subcategory_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category_Id" Type="Int32" />
+          <Property Name="Subcategory_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Edit_Date" Type="DateTime" Precision="3" />
+          <Property Name="Edit_User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_UnsignCustomer">
+          <Key>
+            <PropertyRef Name="Customer_Id" />
+          </Key>
+          <Property Name="Customer_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Phone" Type="Int32" />
+          <Property Name="Customer_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_ProductBrand">
+          <Key>
+            <PropertyRef Name="Brand_Id" />
+          </Key>
+          <Property Name="Brand_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Brand_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Cart">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Session_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Order">
+          <Key>
+            <PropertyRef Name="Order_Id" />
+          </Key>
+          <Property Name="Order_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Session_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Order_Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Edit_Date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_ProductInfo">
+          <Key>
+            <PropertyRef Name="Product_Id" />
+          </Key>
+          <Property Name="Sl_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Product_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Product_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Product_Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Category_Id" Type="Int32" />
+          <Property Name="Subcategory_Id" Type="Int32" />
+          <Property Name="Brand_Id" Type="Int32" />
+          <Property Name="Purchase_Rate" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Sell_Rate" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ReorderLebel" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Edit_Date" Type="DateTime" Precision="3" />
+          <Property Name="Edit_User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebshopManagementModelStoreContainer" CdmEntityContainer="WebshopManagementEntities">
+          <EntitySetMapping Name="tbl_ProductCategory">
+            <EntityTypeMapping TypeName="WebshopManagementModel.tbl_ProductCategory">
+              <MappingFragment StoreEntitySet="tbl_ProductCategory">
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+                <ScalarProperty Name="Edit_Date" ColumnName="Edit_Date" />
+                <ScalarProperty Name="Edit_User" ColumnName="Edit_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ProductStock">
+            <EntityTypeMapping TypeName="WebshopManagementModel.tbl_ProductStock">
+              <MappingFragment StoreEntitySet="tbl_ProductStock">
+                <ScalarProperty Name="Stock_Id" ColumnName="Stock_Id" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Stock_Quantity" ColumnName="Stock_Quantity" />
+                <ScalarProperty Name="Edit_Date" ColumnName="Edit_Date" />
+                <ScalarProperty Name="Edit_User" ColumnName="Edit_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Purchase">
+            <EntityTypeMapping TypeName="WebshopManagementModel.tbl_Purchase">
+              <MappingFragment StoreEntitySet="tbl_Purchase">
+                <ScalarProperty Name="Purchase_Id" ColumnName="Purchase_Id" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Purchase_Qantity" ColumnName="Purchase_Qantity" />
+                <ScalarProperty Name="Purchase_Date" ColumnName="Purchase_Date" />
+                <ScalarProperty Name="Edit_Date" ColumnName="Edit_Date" />
+                <ScalarProperty Name="Edit_User" ColumnName="Edit_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Sale">
+            <EntityTypeMapping TypeName="WebshopManagementModel.tbl_Sale">
+              <MappingFragment StoreEntitySet="tbl_Sale">
+                <ScalarProperty Name="Sale_Id" ColumnName="Sale_Id" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="Sale_Quantity" ColumnName="Sale_Quantity" />
+                <ScalarProperty Name="Edit_Date" ColumnName="Edit_Date" />
+                <ScalarProperty Name="Edit_User" ColumnName="Edit_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CustomerInfo">
+            <EntityTypeMapping TypeName="WebshopManagementModel.tbl_CustomerInfo">
+              <MappingFragment StoreEntitySet="tbl_CustomerInfo">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ProductSubcategory">
+            <EntityTypeMapping TypeName="WebshopManagementModel.tbl_ProductSubcategory">
+              <MappingFragment StoreEntitySet="tbl_ProductSubcategory">
+                <ScalarProperty Name="Edit_User" ColumnName="Edit_User" />
+                <ScalarProperty Name="Edit_Date" ColumnName="Edit_Date" />
+                <ScalarProperty Name="Subcategory_Name" ColumnName="Subcategory_Name" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Subcategory_Id" ColumnName="Subcategory_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_UnsignCustomer">
+            <EntityTypeMapping TypeName="WebshopManagementModel.tbl_UnsignCustomer">
+              <MappingFragment StoreEntitySet="tbl_UnsignCustomer">
+                <ScalarProperty Name="Customer_Address" ColumnName="Customer_Address" />
+                <ScalarProperty Name="Customer_Phone" ColumnName="Customer_Phone" />
+                <ScalarProperty Name="Customer_Email" ColumnName="Customer_Email" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ProductBrand">
+            <EntityTypeMapping TypeName="WebshopManagementModel.tbl_ProductBrand">
+              <MappingFragment StoreEntitySet="tbl_ProductBrand">
+                <ScalarProperty Name="Brand_Name" ColumnName="Brand_Name" />
+                <ScalarProperty Name="Brand_Id" ColumnName="Brand_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Cart">
+            <EntityTypeMapping TypeName="WebshopManagementModel.tbl_Cart">
+              <MappingFragment StoreEntitySet="tbl_Cart">
+                <ScalarProperty Name="Session_Id" ColumnName="Session_Id" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Order">
+            <EntityTypeMapping TypeName="WebshopManagementModel.tbl_Order">
+              <MappingFragment StoreEntitySet="tbl_Order">
+                <ScalarProperty Name="Edit_Date" ColumnName="Edit_Date" />
+                <ScalarProperty Name="Order_Price" ColumnName="Order_Price" />
+                <ScalarProperty Name="Customer_Address" ColumnName="Customer_Address" />
+                <ScalarProperty Name="Customer_Phone" ColumnName="Customer_Phone" />
+                <ScalarProperty Name="Customer_Email" ColumnName="Customer_Email" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="Session_Id" ColumnName="Session_Id" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ProductInfo">
+            <EntityTypeMapping TypeName="WebshopManagementModel.tbl_ProductInfo">
+              <MappingFragment StoreEntitySet="tbl_ProductInfo">
+                <ScalarProperty Name="Edit_User" ColumnName="Edit_User" />
+                <ScalarProperty Name="Edit_Date" ColumnName="Edit_Date" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ReorderLebel" ColumnName="ReorderLebel" />
+                <ScalarProperty Name="Sell_Rate" ColumnName="Sell_Rate" />
+                <ScalarProperty Name="Purchase_Rate" ColumnName="Purchase_Rate" />
+                <ScalarProperty Name="Brand_Id" ColumnName="Brand_Id" />
+                <ScalarProperty Name="Subcategory_Id" ColumnName="Subcategory_Id" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Product_Image" ColumnName="Product_Image" />
+                <ScalarProperty Name="Product_Description" ColumnName="Product_Description" />
+                <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Sl_Id" ColumnName="Sl_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
